@@ -7,13 +7,11 @@ console.log('Funções')
 
 // FUNÇÕES
 // Possuímos as funções: falar, dobro, calcularMedia
-function falar() {
-  return 'Pipipi popopo'
-}
+const falar = () => 'Pipipi popopo'
 
-function dobro(num) {
-  return num * 2
-}
+
+const dobro = (num) => num * 2
+
 
 function calcularMedia(nota1, nota2, nota3) {
   const soma = (nota1 + nota2 + nota3)
@@ -33,33 +31,27 @@ console.log('Callback')
 
 // CALLBACK
 // Possuímos as funções: somar, subtrair, multiplicar e dividir.
-function somar(a, b) {
-  return a + b
-}
+const somar = (a, b) => a + b
 
-function subtrair(a, b) {
-  return a - b
-}
 
-function multiplicar(a, b) {
-  return a * b
-}
+const subtrair = (a, b) => a - b
 
-function dividir(a, b) {
-  return a / b
-}
 
-function ordenar(a, b) {
-  if (a <= b) {
-    return [a, b]
-  } else {
-    return [b, a]
-  }
+const multiplicar = (a, b) =>  a * b
+
+
+const dividir = (a, b) => a / b
+
+
+const ordenar = (a, b) => {
+   (a <= b) ? [a, b] : [b, a]
+  
 }
 
 
 // Crie uma função chamada calcular que receberá como parâmetro: dois números e uma função de callback
 
+const calcular = (n1, n2, callback) => callback(n1, n2 )
 
 
 
@@ -68,7 +60,8 @@ function ordenar(a, b) {
 
 // Faça a soma de dois números usando a função calcular
 
-
+const resultadoSoma = calcular(3, 5, somar)
+console.log(`A soma de 3 com 5 é ${resultadoSoma}`)
 
 
 
@@ -76,7 +69,9 @@ function ordenar(a, b) {
 
 // Faça a subtração de dois números usando a função calcular
 
+const resultadoSubtrair = calcular(10, 5, subtrair)
 
+console.log(`A subtração de 10 e 5 é ${resultadoSubtrair}`)
 
 
 
@@ -84,7 +79,8 @@ function ordenar(a, b) {
 
 // Faça a multiplicação de dois números usando a função calcular
 
-
+const resultadoMultiplica = calcular(2, 6, multiplicar)
+console.log(`A multiplicação de 2 e 6 é ${resultadoMultiplica}`)
 
 
 
@@ -92,7 +88,8 @@ function ordenar(a, b) {
 
 // Faça a divisão de dois números usando a função calcular
 
-
+const resultadoDivisao = calcular(100, 5, dividir)
+console.log(`O resultado da divisão entre 100 e 5 é ${resultadoDivisao}`)
 
 
 
@@ -100,6 +97,8 @@ function ordenar(a, b) {
 // Faça a ordenação crescente de dois números usando a função calcular
 
 
+const ordenaPraGente = calcular(11, 7, ordenar)
+console.log(`Colocamos em ordem os número 11 e 7: ${ordenaPraGente}`)
 
 
 
@@ -112,13 +111,20 @@ console.log('-----------------------------------------------------')
 console.log('Condicionais')
 
 // CONDICIONAIS
-// Uma estudante obteve as seguinte notas: n1, n2 e n3
+// Uma estudante obteve as seguintes notas: n1, n2 e n3
 const n1 = 9
 const n2 = 5
 const n3 = 1
 
 // Verifique se a estudante foi aprovada. Se a média das notas for maior ou igual a 7, a estudante passou!
 
+const media = calcularMedia(n1, n2, n3)
+
+const resultado = (media >= 7) ? 'aprovada' : 'reprovada'
+
+console.log(`A estudante foi ${resultado}`)
+
+//condicao ? true : false
 
 
 
@@ -144,10 +150,11 @@ const pokemon = {
 
 // Fazer destructuring e acessar os valores de objeto e pokemon
 
+const {nome, tipo, peso} = objeto
+console.log(`O objeto ${nome} é feito de ${tipo} e pesa ${peso} kg.`)
 
-
-
-
+const {name, type, height} = pokemon
+console.log(`Capturei o pokemon ${name} que tem tipo ${type} e pesa ${height} kg.`)
 
 
 console.log('-----------------------------------------------------')
@@ -160,7 +167,8 @@ console.log('Datas 🗓')
 // Vamos criar a variável chamada hoje que irá receber a data de hoje.
 
 
-
+const hoje = new Date()
+console.log(hoje)
 
 
 
@@ -169,14 +177,17 @@ console.log('Datas 🗓')
 
 
 
-
+const dia = hoje.getDate()
+const mes = hoje.getMonth()
+const ano = hoje.getFullYear()
+console.log(dia, mes ,ano)
 
 
 
 // Vamos criar uma data específica. Lembrando que mês de Janeiro é 0 no Javascript 🤷🏻‍♀️
 
-
-
+const nascimento = new Date(1998, 8, 05)
+console.log(`nasci em ${nascimento}`)
 
 
 
@@ -184,7 +195,8 @@ console.log('Datas 🗓')
 // Podemos usar o método toLocaleString para formatar a data
 
 
-
+const dataFormatada = hoje.toLocaleDateString('pt-BR')
+console.log(dataFormatada)
 
 
 
@@ -193,8 +205,8 @@ console.log('Datas 🗓')
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
 
-
-
+const dataLonga = hoje.toLocaleDateString('pt-BR', options)
+console.log(dataLonga)
 
 
 
@@ -209,9 +221,31 @@ const pessoa = {
   peso: 55,
   andando: false,
   caminhouQuantosMetros: 0,
-}
+  const pessoa = {
+    nome: 'Yasminn',
+    sobrenome: 'Vaz',
+    idade: 1,
+    altura: 1.62,
+    peso: 55,
+    andando: false,
+    caminhouQuantosMetros: 0,
+    fazerAniversario: () => pessoa.idade++,
+    andar: (metrosCaminhados) => {
+      pessoa.andando = true
+      pessoa.caminhouQuantosMetros += metrosCaminhados
+    },
+    parar: () => pessoa.andando = false,
+    apresentacao: () => {
+      const anos = (pessoa.idade === 1) ? 'ano' : 'anos'
+    
+      const metros = (pessoa.caminhouQuantosMetros === 1) ? 'metro' : 'metros'
+    
+      return `Olá, eu sou ${pessoa.nome} ${pessoa.sobrenome}, tenho ${pessoa.idade} ${anos}, ${pessoa.altura}, meu peso é ${pessoa.peso} e, só hoje, eu já caminhei ${pessoa.caminhouQuantosMetros} ${metros}!`
+    }
+  }
+  
 
-pessoa.fazerAniversario = function () {
+/*pessoa.fazerAniversario = function () {
   return pessoa.idade++
 }
 
@@ -248,16 +282,15 @@ pessoa.apresentacao = function () {
   let anos = 'anos'
   let metros = 'metros'
 
-  if (pessoa.idade === 1) {
-    anos = 'ano'
-  }
+  const anos = (pessoa.idade === 1) ? 'ano' : 'anos'
+  
 
-  if (pessoa.caminhouQuantosMetros === 1) {
-    metros = 'metro'
-  }
+  const metros =(pessoa.caminhouQuantosMetros === 1) ? metros = 'metro' : metros = 'metros'
+  
 
   return `Olá, eu sou ${pessoa.nome} ${pessoa.sobrenome}, tenho ${pessoa.idade} ${anos}, ${pessoa.altura}, meu peso é ${pessoa.peso} e, só hoje, eu já caminhei ${pessoa.caminhouQuantosMetros} ${metros}!`
 }
+*/
 
 // Vamos utilizar o formato ES6 para refatorar a constante pessoa.
 
