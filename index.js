@@ -37,21 +37,34 @@ const somar = (a, b) => a + b
 const subtrair = (a, b) => a - b
 
 
+<<<<<<< HEAD
 const multiplicar = (a, b) => a * b
+=======
+const multiplicar = (a, b) =>  a * b
+>>>>>>> master
 
 
 const dividir = (a, b) => a / b
 
 
 const ordenar = (a, b) => {
+<<<<<<< HEAD
   (a <= b) ? [a, b] : [b, a]
 
+=======
+   (a <= b) ? [a, b] : [b, a]
+  
+>>>>>>> master
 }
 
 
 // Crie uma função chamada calcular que receberá como parâmetro: dois números e uma função de callback
 
+<<<<<<< HEAD
 const calcular = (n1, n2, callback) => callback(n1, n2)
+=======
+const calcular = (n1, n2, callback) => callback(n1, n2 )
+>>>>>>> master
 
 
 
@@ -150,10 +163,17 @@ const pokemon = {
 
 // Fazer destructuring e acessar os valores de objeto e pokemon
 
+<<<<<<< HEAD
 const { nome, tipo, peso } = objeto
 console.log(`O objeto ${nome} é feito de ${tipo} e pesa ${peso} kg.`)
 
 const { name, type, height } = pokemon
+=======
+const {nome, tipo, peso} = objeto
+console.log(`O objeto ${nome} é feito de ${tipo} e pesa ${peso} kg.`)
+
+const {name, type, height} = pokemon
+>>>>>>> master
 console.log(`Capturei o pokemon ${name} que tem tipo ${type} e pesa ${height} kg.`)
 
 
@@ -180,7 +200,11 @@ console.log(hoje)
 const dia = hoje.getDate()
 const mes = hoje.getMonth()
 const ano = hoje.getFullYear()
+<<<<<<< HEAD
 console.log(dia, mes, ano)
+=======
+console.log(dia, mes ,ano)
+>>>>>>> master
 
 
 
@@ -209,9 +233,24 @@ const dataLonga = hoje.toLocaleDateString('pt-BR', options)
 console.log(dataLonga)
 
 
+<<<<<<< HEAD
 /*
 console.log('-----------------------------------------------------')
 // ----------------------------------------------
+=======
+
+console.log('-----------------------------------------------------')
+// ----------------------------------------------
+
+const pessoa = {
+  nome: 'Yasminn',
+  sobrenome: 'Vaz',
+  idade: 25,
+  altura: 1.62,
+  peso: 55,
+  andando: false,
+  caminhouQuantosMetros: 0,
+>>>>>>> master
   const pessoa = {
     nome: 'Yasminn',
     sobrenome: 'Vaz',
@@ -222,6 +261,7 @@ console.log('-----------------------------------------------------')
     caminhouQuantosMetros: 0,
     fazerAniversario: () => pessoa.idade++,
     andar: (metrosCaminhados) => {
+<<<<<<< HEAD
       this.andando = true
       this.caminhouQuantosMetros += metrosCaminhados
     },
@@ -236,6 +276,22 @@ console.log('-----------------------------------------------------')
   }
   
 */
+=======
+      pessoa.andando = true
+      pessoa.caminhouQuantosMetros += metrosCaminhados
+    },
+    parar: () => pessoa.andando = false,
+    apresentacao: () => {
+      const anos = (pessoa.idade === 1) ? 'ano' : 'anos'
+    
+      const metros = (pessoa.caminhouQuantosMetros === 1) ? 'metro' : 'metros'
+    
+      return `Olá, eu sou ${pessoa.nome} ${pessoa.sobrenome}, tenho ${pessoa.idade} ${anos}, ${pessoa.altura}, meu peso é ${pessoa.peso} e, só hoje, eu já caminhei ${pessoa.caminhouQuantosMetros} ${metros}!`
+    }
+  }
+  
+
+>>>>>>> master
 /*pessoa.fazerAniversario = function () {
   return pessoa.idade++
 }
