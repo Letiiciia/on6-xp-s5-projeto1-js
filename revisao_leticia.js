@@ -1,3 +1,21 @@
+// function e arrow function
+/*function dobro(num) {
+    return num * 2
+}
+
+
+// modificando
+
+const dobro = function(num){
+    return num * 2
+}
+
+// arrow function 
+
+const dobro = num => num * 2 // o parenteses no parametro da function é opcional
+
+console.log(dobro(2));*/
+
 console.log('-----------------------------------------------------')
 console.log('Olá, mundo!', 'Revisão de JavaScript e Introdução a ES6!')
 console.log('-----------------------------------------------------')
@@ -7,16 +25,17 @@ console.log('Funções')
 
 // FUNÇÕES
 // Possuímos as funções: falar, dobro, calcularMedia
-const falar = () => 'Pipipi popopo'
+const falar = () => 'pipipi popopo'
+console.log(falar());
+
+const dobro = num => num * 2
+console.log(dobro(2));
 
 
-const dobro = (num) => num * 2
-
-
-function calcularMedia(nota1, nota2, nota3) {
-  const soma = (nota1 + nota2 + nota3)
-  const media = soma / 3
-  return media
+const calcularMedia = (nota1, nota2, nota3) => {
+    const soma = (nota1 + nota2 + nota3)
+    const media = soma / 3
+    return media
 }
 
 // Vamos refatorar essas funções para a sintaxe de Arrow function
@@ -31,6 +50,7 @@ console.log('Callback')
 
 // CALLBACK
 // Possuímos as funções: somar, subtrair, multiplicar e dividir.
+
 const somar = (a, b) => a + b
 
 
@@ -43,10 +63,8 @@ const multiplicar = (a, b) => a * b
 const dividir = (a, b) => a / b
 
 
-const ordenar = (a, b) => {
-  (a <= b) ? [a, b] : [b, a]
+const ordenar = (a, b) => (a <= b) ? [a, b] : [b, a]
 
-}
 
 
 // Crie uma função chamada calcular que receberá como parâmetro: dois números e uma função de callback
@@ -56,16 +74,15 @@ const calcular = (n1, n2, callback) => callback(n1, n2)
 
 
 
+console.log('-----------------')
 
 
 // Faça a soma de dois números usando a função calcular
 
 const resultadoSoma = calcular(3, 5, somar)
-console.log(`A soma de 3 com 5 é ${resultadoSoma}`)
+console.log(`A soma de 3 com 5 é, ${resultadoSoma}`)
 
-
-
-
+console.log('-----------------')
 
 // Faça a subtração de dois números usando a função calcular
 
@@ -73,26 +90,25 @@ const resultadoSubtrair = calcular(10, 5, subtrair)
 
 console.log(`A subtração de 10 e 5 é ${resultadoSubtrair}`)
 
-
+console.log('-----------------')
 
 
 
 // Faça a multiplicação de dois números usando a função calcular
 
 const resultadoMultiplica = calcular(2, 6, multiplicar)
-console.log(`A multiplicação de 2 e 6 é ${resultadoMultiplica}`)
+console.log(`A multiplicação de 2 e 6 é ${resultadoMultiplica}`);
 
-
+console.log('-----------------')
 
 
 
 // Faça a divisão de dois números usando a função calcular
 
 const resultadoDivisao = calcular(100, 5, dividir)
-console.log(`O resultado da divisão entre 100 e 5 é ${resultadoDivisao}`)
+console.log(`O resultado da divisão entre 100 e 5 é ${resultadoDivisao}`);
 
-
-
+console.log('-----------------')
 
 // Faça a ordenação crescente de dois números usando a função calcular
 
@@ -120,9 +136,11 @@ const n3 = 1
 
 const media = calcularMedia(n1, n2, n3)
 
-const resultado = (media >= 7) ? 'aprovada' : 'reprovada'
+const resultado = (media >= 7) ? 'Aprovada' : 'Reprovada'
 
-console.log(`A estudante foi ${resultado}`)
+
+console.log(`A estudante foi ${resultado}`);
+
 
 //condicao ? true : false
 
@@ -143,9 +161,9 @@ objeto.tipo = 'madeira'
 objeto.peso = 7
 
 const pokemon = {
-  name: 'Pikachu',
-  type: 'elétrico',
-  height: 40.6,
+    name: 'Pikachu',
+    type: 'elétrico',
+    height: 40.6,
 }
 
 // Fazer destructuring e acessar os valores de objeto e pokemon
@@ -154,7 +172,7 @@ const { nome, tipo, peso } = objeto
 console.log(`O objeto ${nome} é feito de ${tipo} e pesa ${peso} kg.`)
 
 const { name, type, height } = pokemon
-console.log(`Capturei o pokemon ${name} que tem tipo ${type} e pesa ${height} kg.`)
+console.log(`Capturei o pokemon ${name} que tem tipo ${type} e tem altura de ${height} cm.`)
 
 
 console.log('-----------------------------------------------------')
@@ -209,10 +227,10 @@ const dataLonga = hoje.toLocaleDateString('pt-BR', options)
 console.log(dataLonga)
 
 
-/*
+
 console.log('-----------------------------------------------------')
 // ----------------------------------------------
-  const pessoa = {
+const pessoa = {
     nome: 'Yasminn',
     sobrenome: 'Vaz',
     idade: 1,
@@ -221,85 +239,101 @@ console.log('-----------------------------------------------------')
     andando: false,
     caminhouQuantosMetros: 0,
     fazerAniversario: () => pessoa.idade++,
-    andar: (metrosCaminhados) => {
-      this.andando = true
-      this.caminhouQuantosMetros += metrosCaminhados
+    andar: metrosCaminhados => {
+        pessoa.andando = true
+        pessoa.caminhouQuantosMetros += metrosCaminhados
     },
-    parar: () => this.andando = false,
+    parar: () => pessoa.andando = false,
     apresentacao: () => {
-      const anos = (this.idade === 1) ? 'ano' : 'anos'
-    
-      const metros = (this.caminhouQuantosMetros === 1) ? 'metro' : 'metros'
-    
-      return `Olá, eu sou ${this.nome} ${this.sobrenome}, tenho ${this.idade} ${anos}, ${pessoa.altura}, meu peso é ${this.peso} e, só hoje, eu já caminhei ${this.caminhouQuantosMetros} ${metros}!`
+        const anos = (pessoa.idade === 1) ? 'ano' : 'anos'
+
+
+        const metros = (pessoa.caminhouQuantosMetros <= 1) ? 'metro' : 'metros'
+
+
+        return `Olá, eu sou ${pessoa.nome} ${pessoa.sobrenome}, tenho ${pessoa.idade} ${anos}, ${pessoa.altura}, meu peso é ${pessoa.peso} e, só hoje, eu já caminhei ${pessoa.caminhouQuantosMetros} ${metros}!`
     }
-  }
-  
-*/
-/*pessoa.fazerAniversario = function () {
-  return pessoa.idade++
 }
+pessoa.andar(200)
+console.log(pessoa.apresentacao())
 
-pessoa.andar = function (metrosCaminhados) {
-  pessoa.andando = true
-  pessoa.caminhouQuantosMetros += metrosCaminhados
-}
 
-pessoa.parar = function () {
-  pessoa.andando = false
-}
 
-pessoa.nomeCompleto = function () {
-  return `Olá, meu nome é ${pessoa.nome} ${pessoa.sobrenome}.`
-}
 
-pessoa.mostrarIdade = function () {
-  return `Olá, eu tenho ${pessoa.idade} anos.`
-}
 
-pessoa.mostrarPeso = function () {
-  return `Eu peso ${pessoa.peso}.`
-}
 
-pessoa.mostrarAltura = function () {
-  return `Minha altura é ${pessoa.altura}.`
-}
 
-pessoa.mostrarDistancia = function () {
-  return `${pessoa.nome} caminhou ${pessoa.caminhouQuantosMetros}m.`
-}
 
-pessoa.apresentacao = function () {
-  let anos = 'anos'
-  let metros = 'metros'
-
-  const anos = (pessoa.idade === 1) ? 'ano' : 'anos'
-  
-
-  const metros =(pessoa.caminhouQuantosMetros === 1) ? metros = 'metro' : metros = 'metros'
-  
-
-  return `Olá, eu sou ${pessoa.nome} ${pessoa.sobrenome}, tenho ${pessoa.idade} ${anos}, ${pessoa.altura}, meu peso é ${pessoa.peso} e, só hoje, eu já caminhei ${pessoa.caminhouQuantosMetros} ${metros}!`
-}
-*/
 
 // Vamos utilizar o formato ES6 para refatorar a constante pessoa.
 
 // Quero criar as variáveis pessoa2 e pessoa3 com as mesmas propriedades, mas alterando os valores de nome, sobrenome, altura e peso
 
+const pessoa2 = {
+    nome: 'Letícia',
+    sobrenome: 'Lima',
+    idade: 22,
+    altura: 1.62,
+    peso: 55,
+    andando: false,
+    caminhouQuantosMetros: 0,
+    fazerAniversario: () => pessoa.idade++,
+    andar: metrosCaminhados => {
+        pessoa2.andando = true
+        pessoa2.caminhouQuantosMetros += metrosCaminhados
+    },
+    parar: () => pessoa2.andando = false,
+    apresentacao: () => {
+        const anos = (pessoa2.idade === 1) ? 'ano' : 'anos'
+
+
+        const metros = (pessoa2.caminhouQuantosMetros <= 1) ? 'metro' : 'metros'
+
+
+        return `Olá, eu sou ${pessoa2.nome} ${pessoa2.sobrenome}, tenho ${pessoa2.idade} ${anos}, ${pessoa2.altura}, meu peso é ${pessoa2.peso} e, só hoje, eu já caminhei ${pessoa2.caminhouQuantosMetros} ${metros}!`
+    }
+}
+pessoa2.andar(200)
+console.log(pessoa2.apresentacao())
+
+
+const pessoa3 = {
+    nome: 'Camila',
+    sobrenome: 'Lima',
+    idade: 26,
+    altura: 1.62,
+    peso: 55,
+    andando: false,
+    caminhouQuantosMetros: 0,
+    fazerAniversario: () => pessoa.idade++,
+    andar: metrosCaminhados => {
+        pessoa3.andando = true
+        pessoa3.caminhouQuantosMetros += metrosCaminhados
+    },
+    parar: () => pessoa3.andando = false,
+    apresentacao: () => {
+        const anos = (pessoa3.idade === 1) ? 'ano' : 'anos'
+
+
+        const metros = (pessoa3.caminhouQuantosMetros <= 1) ? 'metro' : 'metros'
+
+
+        return `Olá, eu sou ${pessoa3.nome} ${pessoa3.sobrenome}, tenho ${pessoa3.idade} ${anos}, ${pessoa3.altura}, meu peso é ${pessoa3.peso} e, só hoje, eu já caminhei ${pessoa3.caminhouQuantosMetros} ${metros}!`
+    }
+}
+pessoa3.andar(200)
+console.log(pessoa3.apresentacao())
 
 
 
 
-
-console.log('-----------------------------------------------------')
 // ----------------------------------------------
 // CLASSES
-console.log('Classes 🆕')
+//console.log('Classes 🆕')
 
 // Vamos criar a classe Pessoa
 
-const pessoa = {
+/*const pessoa = {
   nome: 'Yasminn',
   sobrenome: 'Vaz',
   idade: 1,
@@ -323,19 +357,20 @@ const pessoa = {
 }
 pessoa.andar(100)
 console.log(pessoa.apresentacao())
-
+*/
 //vamos criar a classe Pessoa
 class Pessoa {
 
-  constructor(name, surname, age, walking = false){
-  
-this.nome = name
-this.sobrenome = surname
-this.idade = age
-this.andando = walking
+    constructor(name, surname, age, walking = false) {
 
-}}
-const pessoa3 = new Pessoa('Camila', 'Marques', 24)
+        this.nome = name
+        this.sobrenome = surname
+        this.idade = age
+        this.andando = walking
+
+    }
+}
+/*const pessoa3 = new Pessoa('Camila', 'Marques', 24)
 console.log(pessoa3.nome)
 
 const { sobrenome } = pessoa3
@@ -343,7 +378,7 @@ const { sobrenome } = pessoa3
 console.log(sobrenome)
 console.log(pessoa3)
 
-
+*/
 console.log('-----------------------------------------------------')
 // ----------------------------------------------
 // ARRAYS
@@ -387,7 +422,7 @@ console.log(terceiro);
 const db = require('./db')
 
 console.log(db)
-const {tias} = db
+const { tias } = db
 console.log(tias);
 
 
@@ -442,18 +477,18 @@ console.log('sort()')
 // const numbers = [9, 2, 5]
 
 const comparar = (a, b) => {
-  if (a < b) { // antenho a como primeiro e b vem depois
-    return -1
-  } else if (a > b) { //primeiro vem b e depois vem a m
-    return 1
-  } else { // se a e b forem iguais, mantém a mesma ordem
-    return 0
-  }
+    if (a < b) { // antenho a como primeiro e b vem depois
+        return -1
+    } else if (a > b) { //primeiro vem b e depois vem a m
+        return 1
+    } else { // se a e b forem iguais, mantém a mesma ordem
+        return 0
+    }
 }
 //o sorte faz exatemente oq meu if determina para organizar por tamanho
 // Refatore a função comparar e ordene numbers em ordem crescente
 
-numbers.sort ((a, b) => a-b) // função dentro do sort
+numbers.sort((a, b) => a - b) // função dentro do sort
 console.log(numbers)
 
 
@@ -462,14 +497,14 @@ console.log(numbers)
 
 // Ordene as tias por ordem decrescente de idade (a mais velha primeiro)
 
-function ordenarTias(a, b){
-return b.idade - a.idade
+function ordenarTias(a, b) {
+    return b.idade - a.idade
 
 }
 
 tias.sort((a, b) => b.idade - a.idade)
-  
-  
+
+
 console.table(tias);
 
 
@@ -481,7 +516,7 @@ console.log('reduce()')
 
 // Faça a soma do array numbers
 
-const arrayReduzido = numbers.reduce((acumulador,item) => acumulador + item, 10)
+const arrayReduzido = numbers.reduce((acumulador, item) => acumulador + item, 10)
 
 console.log(arrayReduzido)
 
@@ -492,11 +527,11 @@ console.log(arrayReduzido)
 // Some a quantidade de netos que vovó possui.
 
 
-function somarNetos(acumulador, tia){
-  return acumulador + tia.filhos
+function somarNetos(acumulador, tia) {
+    return acumulador + tia.filhos
 }
 
-const netos =tias.reduce((acumulador, item) => acumulador + item, 10)
+const netos = tias.reduce((acumulador, item) => acumulador + item, 10)
 
 
 
@@ -506,3 +541,4 @@ const netos =tias.reduce((acumulador, item) => acumulador + item, 10)
 console.log('-----------------------------------------------------')
 console.log('                         Fim                         ')
 console.log('-----------------------------------------------------')
+
