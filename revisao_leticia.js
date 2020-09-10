@@ -277,20 +277,20 @@ const pessoa2 = {
     peso: 55,
     andando: false,
     caminhouQuantosMetros: 0,
-    fazerAniversario: () => pessoa.idade++,
-    andar: metrosCaminhados => {
-        pessoa2.andando = true
-        pessoa2.caminhouQuantosMetros += metrosCaminhados
+    fazerAniversario: function () { this.idade++ },
+    andar: function (metrosCaminhados) {
+        this.andando = true
+        this.caminhouQuantosMetros += metrosCaminhados
     },
-    parar: () => pessoa2.andando = false,
-    apresentacao: () => {
-        const anos = (pessoa2.idade === 1) ? 'ano' : 'anos'
+    parar: function () { this.andando = false },
+    apresentacao: function () {
+        const anos = (this.idade === 1) ? 'ano' : 'anos'
 
 
-        const metros = (pessoa2.caminhouQuantosMetros <= 1) ? 'metro' : 'metros'
+        const metros = (this.caminhouQuantosMetros <= 1) ? 'metro' : 'metros'
 
 
-        return `Olá, eu sou ${pessoa2.nome} ${pessoa2.sobrenome}, tenho ${pessoa2.idade} ${anos}, ${pessoa2.altura}, meu peso é ${pessoa2.peso} e, só hoje, eu já caminhei ${pessoa2.caminhouQuantosMetros} ${metros}!`
+        return `Olá, eu sou ${this.nome} ${this.sobrenome}, tenho ${this.idade} ${anos}, ${this.altura}, meu peso é ${this.peso} e, só hoje, eu já caminhei ${this.caminhouQuantosMetros} ${metros}!`
     }
 }
 pessoa2.andar(200)
@@ -325,60 +325,49 @@ pessoa3.andar(200)
 console.log(pessoa3.apresentacao())
 
 
-
-
+console.log("------------------------------------");
 // ----------------------------------------------
 // CLASSES
-//console.log('Classes 🆕')
+console.log('Classes 🆕')
 
 // Vamos criar a classe Pessoa
 
-/*const pessoa = {
-  nome: 'Yasminn',
-  sobrenome: 'Vaz',
-  idade: 1,
-  altura: 1.62,
-  peso: 55,
-  andando: false,
-  caminhouQuantosMetros: 0,
-  fazerAniversario: () => pessoa.idade++,
-  andar: (metrosCaminhados) => {
-    this.andando = true
-    this.caminhouQuantosMetros += metrosCaminhados
-  },
-  parar: () => this.andando = false,
-  apresentacao: () => {
-    const anos = (this.idade === 1) ? 'ano' : 'anos'
 
-    const metros = (this.caminhouQuantosMetros === 1) ? 'metro' : 'metros'
 
-    return `Olá, eu sou ${this.nome} ${this.sobrenome}, tenho ${this.idade} ${anos}, ${pessoa.altura}, meu peso é ${this.peso} e, só hoje, eu já caminhei ${this.caminhouQuantosMetros} ${metros}!`
-  }
-}
-pessoa.andar(100)
-console.log(pessoa.apresentacao())
-*/
 //vamos criar a classe Pessoa
 class Pessoa {
 
-    constructor(name, surname, age, walking = false) {
+    constructor(name, surname, age, walking = false, distance = 0) {
 
         this.nome = name
         this.sobrenome = surname
         this.idade = age
         this.andando = walking
+        this.caminhouQuantosMetros = distance
+
+
 
     }
-}
-/*const pessoa3 = new Pessoa('Camila', 'Marques', 24)
-console.log(pessoa3.nome)
+fazerAniversario(){
+    this.idade++
 
-const { sobrenome } = pessoa3
+}
+
+}
+const pessoa4 = new Pessoa('Camila', 'Marques', 24)
+console.log(pessoa4.nome)
+
+const {sobrenome} = pessoa4
 
 console.log(sobrenome)
-console.log(pessoa3)
 
-*/
+pessoa4.fazerAniversario()
+console.log(pessoa4)
+
+const pessoa5 = new Pessoa('Edlaine', 'Pontes', 36, true, 500)
+
+console.log(pessoa5)
+
 console.log('-----------------------------------------------------')
 // ----------------------------------------------
 // ARRAYS
@@ -392,37 +381,31 @@ const numbers = [9, 2, 5]
 // Acessando elementos pela posição do array
 
 
-const primeiroItem = lista[0]
-console.log(primeiroItem)
-console.log(lista[2]);
-console.log(lista.length);
-
+console.log(lista[2])
 
 
 // Informe o tamanho de cada array
-
-console.log(lista.length);
+console.log(numbers.length)
 
 
 
 
 // Faça a desestruturação do array
 
-
-
 const [primeiro, segundo, terceiro] = lista
-console.log(primeiro);
-console.log(segundo);
-console.log(terceiro);
 
-
+console.log(primeiro)
+console.log(segundo)
+console.log(terceiro)
 
 // Possuo 4 tias. Os dados delas estão armazenados no array de objetos dentro do arquivo db.js
 // Vamos importar esses dados para podermos usá-los durante nosso exercício de revisão.
 const db = require('./db')
 
 console.log(db)
-const { tias } = db
+
+const {tias} = db
+
 console.log(tias);
 
 
@@ -435,12 +418,9 @@ console.log('Métodos iteração ')
 
 // Mostre a tabela das tias pelo console.table()
 
-console.table(tias)
 
+console.table(tias) 
 console.table(lista)
-
-
-
 
 
 console.log('-----------------------------------------------------')
@@ -448,11 +428,15 @@ console.log('filter()')
 // filter
 // Filtre as tias que moram em SP e mostre no console.
 
+const tiasSP = tias.filter((tias) => tias.local === "SP")
 
+console.table(tiasSP)
 
-const tiasSP = tias.filter(item => item.local === "SP")
+const tiaEspecifica = tias.find((tia) => tia.nome === 'Neusa')
+console.table(tiaEspecifica)
 
-console.table(tiasSP);
+const idadeDaTia = tias.filter((tia) => tia.idade >= 73)
+console.table(idadeDaTia)
 
 
 
@@ -464,8 +448,9 @@ console.log('map()')
 // Crie um novo array chamado tiasMaisChegadas e adicione uma propriedade chamada cuidouDeMim que recebe um valor booleano. Caso a tia teve até 2 filhos, isso significa que ela cuidou de mim e seu valor é true. Caso ela teve mais que 2 filhos, o valor da propriedade cuidouDeMim é false.
 
 
+const tiasMaisChegada = tias.map(((tia.filhos <= 2) ? tia.cuidouDeMim = true : tia.cuidouDeMim = false))
 
-
+console.log(tiasMaisChegada)
 
 
 
@@ -476,21 +461,28 @@ console.log('sort()')
 // Vamos praticar o método sort() com o array numbers
 // const numbers = [9, 2, 5]
 
-const comparar = (a, b) => {
-    if (a < b) { // antenho a como primeiro e b vem depois
+/*const comparar = (a, b) => {
+    if (a < b) { // mantenho a como primeiro e b vem depois
         return -1
-    } else if (a > b) { //primeiro vem b e depois vem a m
+    } else if (a > b) { //primeiro vem b e depois vem a 
         return 1
     } else { // se a e b forem iguais, mantém a mesma ordem
         return 0
     }
 }
+*/
+
+
+numbers.sort((a,b) => a - b)
+
+console.log(numbers)
+
 //o sorte faz exatemente oq meu if determina para organizar por tamanho
 // Refatore a função comparar e ordene numbers em ordem crescente
 
-numbers.sort((a, b) => a - b) // função dentro do sort
-console.log(numbers)
+tias.sort((a, b) => b.idade - a.idade)
 
+console.table(tias)
 
 
 
@@ -527,18 +519,12 @@ console.log(arrayReduzido)
 // Some a quantidade de netos que vovó possui.
 
 
-function somarNetos(acumulador, tia) {
-    return acumulador + tia.filhos
-}
+const totalNetos = tias.reduce((acumulador, tia) => acumulador + tia.filhos, 0)
 
-const netos = tias.reduce((acumulador, item) => acumulador + item, 10)
-
-
-
+console.log(`O total de netos é ${totalNetos}`)
 
 
 // ----------------------------------------------
 console.log('-----------------------------------------------------')
 console.log('                         Fim                         ')
 console.log('-----------------------------------------------------')
-
