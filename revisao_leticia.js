@@ -448,7 +448,7 @@ console.log('map()')
 // Crie um novo array chamado tiasMaisChegadas e adicione uma propriedade chamada cuidouDeMim que recebe um valor booleano. Caso a tia teve até 2 filhos, isso significa que ela cuidou de mim e seu valor é true. Caso ela teve mais que 2 filhos, o valor da propriedade cuidouDeMim é false.
 
 
-const tiasMaisChegada = tias.map(((tia.filhos <= 2) ? tia.cuidouDeMim = true : tia.cuidouDeMim = false))
+const tiasMaisChegada = tias.map(((tias.filhos <= 2) ? tias.cuidouDeMim = true : tias.cuidouDeMim = false))
 
 console.log(tiasMaisChegada)
 
@@ -518,10 +518,33 @@ console.log(arrayReduzido)
 
 // Some a quantidade de netos que vovó possui.
 
+function cuidar(tia){
 
-const totalNetos = tias.reduce((acumulador, tia) => acumulador + tia.filhos, 0)
+const {nome, idade, filhos, local} = tia
 
-console.log(`O total de netos é ${totalNetos}`)
+if(tias.filhos<=2){
+    const tiaNova = {
+        nome,
+        idade,
+        filhos,
+        local,
+        cuidouDeMim: true
+    }
+    return tiaNova
+}else{
+    return tia.cuidouDeMim = false
+
+}
+}
+
+const tiasMaisChegadas = tias.masp(cuidar)
+
+console.log(tiasMaisChegadas)
+
+
+
+
+//console.log(`O total de netos é ${totalNetos}`)
 
 
 // ----------------------------------------------
